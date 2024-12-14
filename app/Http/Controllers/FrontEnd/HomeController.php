@@ -27,7 +27,7 @@ class HomeController extends Controller
                 'brands' => $this->brandCacheService->getBrands(),
                 'categories' => $this->categoryCacheService->getCategories(),
                 'categoryProduct' => $this->categoryCacheService->getProducts(),
-                'title' => "Home page | ".config('app.name'),
+                'title' => "Home page",
             ]
         );
     }

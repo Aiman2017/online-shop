@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Repositories\Interfaces\CartRepositoryInterface;
 use App\Services\CategoryServices\CategoryCacheService;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -14,8 +15,11 @@ class FrontLayout extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(protected CategoryCacheService $categoryCacheService, protected $title)
-    {
+    public function __construct(
+        protected CartRepositoryInterface $carts,
+        protected CategoryCacheService $categoryCacheService,
+        protected $title
+    ) {
         // dd
     }
 
@@ -27,6 +31,8 @@ class FrontLayout extends Component
         return view('front-end.components.front-layout',
             [
                 'categories' => $this->categoryCacheService->getCategories(),
+                'carts' => $this->carts->get(),
+                'total' => $this->carts->total(),
                 'title' => $this->title.' | '.config('app.name'),
             ]);
     }

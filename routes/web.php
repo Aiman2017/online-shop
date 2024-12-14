@@ -17,6 +17,7 @@ Route::group(['prefix' => '/', 'as' => 'shop.'], function () {
     Route::get('/categories/', [Category::class, 'index'])->name('category');
     Route::get('category/{category:slug}', [Category::class, 'show'])->name('category.show');
 
+    Route::delete('cart', [CartController::class, 'clear'])->name('cart.clear');
     Route::resource('cart', CartController::class);
 });
 
