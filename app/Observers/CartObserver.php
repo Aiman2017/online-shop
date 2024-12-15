@@ -14,5 +14,4 @@ class CartObserver
     {
         $cart->uuid = Str::uuid();
     }
-
 }
