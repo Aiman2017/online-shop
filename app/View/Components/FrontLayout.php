@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use App\Repositories\Interfaces\CartRepositoryInterface;
+use App\Repositories\Interfaces\WishlistRepositoryInterface;
 use App\Services\CategoryServices\CategoryCacheService;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -17,6 +18,7 @@ class FrontLayout extends Component
      */
     public function __construct(
         protected CartRepositoryInterface $carts,
+        protected WishlistRepositoryInterface $wishlists,
         protected CategoryCacheService $categoryCacheService,
         protected $title
     ) {
@@ -32,6 +34,7 @@ class FrontLayout extends Component
             [
                 'categories' => $this->categoryCacheService->getCategories(),
                 'carts' => $this->carts->get(),
+                'wishlists' => count($this->wishlists->get()),
                 'total' => $this->carts->total(),
                 'title' => $this->title.' | '.config('app.name'),
             ]);

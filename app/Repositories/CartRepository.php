@@ -25,15 +25,13 @@ class CartRepository implements CartRepositoryInterface
      */
     public function add(Product $product, int $quantity = 1)
     {
-        // Ищем товар в корзине для текущего пользователя и этого продукта
-        $cartItem = Cart::query()
-            ->where('cookie_id', $this->getCookieId())
+        // Ищем существующий товар в корзине для данного пользователя
+        $cartItem = Cart::query()->where('cookie_id', $this->getCookieId())
             ->where('user_id', auth()->id())
             ->where('product_id', $product->id)
             ->first();
 
         if ($cartItem) {
-            // Если товар уже есть в корзине, обновляем его количество
             $cartItem->update([
                 'quantity' => $cartItem->quantity + $quantity,
             ]);

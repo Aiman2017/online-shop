@@ -60,13 +60,14 @@ class CartController extends Controller
     public function destroy(string $id): \Illuminate\Http\RedirectResponse
     {
         $this->cart->delete($id);
+        toastr()->success(__('Cart Deleted Successfully'));
+
         return redirect()->back();
     }
 
     protected function clear()
     {
         $this->cart->empty();
-
         return redirect()->back();
     }
 }

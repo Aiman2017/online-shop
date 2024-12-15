@@ -4,6 +4,7 @@ use App\Http\Controllers\FrontEnd\CartController;
 use App\Http\Controllers\FrontEnd\CategoryController as Category;
 use App\Http\Controllers\FrontEnd\HomeController;
 use App\Http\Controllers\FrontEnd\ProductController as Product;
+use App\Http\Controllers\FrontEnd\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,6 +20,7 @@ Route::group(['prefix' => '/', 'as' => 'shop.'], function () {
 
     Route::delete('cart', [CartController::class, 'clear'])->name('cart.clear');
     Route::resource('cart', CartController::class);
+    Route::resource('wishlist', WishlistController::class);
 });
 
 require __DIR__.'/auth.php';

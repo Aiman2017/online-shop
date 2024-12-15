@@ -30,8 +30,18 @@
                         <a href="#">Links</a>
                         <ul>
                             <li><a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a></li>
-                            <li><a href="wishlist.html"><i class="icon-heart-o"></i>My Wishlist <span>(3)</span></a>
+
+                            <li>
+                                <a href="{{ route('shop.wishlist.index') }}" class="text-decoration-none text-dark">
+                                    <i class="icon-heart-o"></i> My Wishlist
+                                    <span class="badge"
+                                          style="background-color: #cc9966; color: white; border-radius: 12px; border: 1px solid #cc9966; padding: 2px 5px;">
+                                    {{ $wishlists }}
+                                </span>
+                                </a>
                             </li>
+
+
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
                             @auth
@@ -114,7 +124,7 @@
                 </div><!-- End .header-search -->
 
                 <div class="dropdown cart-dropdown">
-                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                    <a href="{{route('shop.cart.index')}}" class="dropdown-toggle" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false" data-display="static">
                         <i class="icon-shopping-cart"></i>
                         <span class="cart-count">{{count($carts)}}</span>

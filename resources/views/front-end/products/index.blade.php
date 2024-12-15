@@ -67,21 +67,34 @@
                                                         alt="Product image"
                                                         class="product-image">
                                                 </a>
+                                                <form action="{{route('shop.wishlist.store')}}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                    <div class="product-action-vertical">
+                                                        <button type="submit"
+                                                                class="btn-product-icon btn-wishlist btn-expandable">
+                                                            <span>add to wishlist</span></button>
+                                                        <a href=""
+                                                           class="btn-product-icon btn-quickview"
+                                                           title="Quick view"><span>Quick view</span></a>
+                                                        <a href="#" class="btn-product-icon btn-compare"
+                                                           title="Compare"><span>Compare</span></a>
+                                                    </div><!-- End .product-action-vertical -->
+                                                </form>
 
-                                                <div class="product-action-vertical">
-                                                    <a href="#"
-                                                       class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                                    <a href=""
-                                                       class="btn-product-icon btn-quickview"
-                                                       title="Quick view"><span>Quick view</span></a>
-                                                    <a href="#" class="btn-product-icon btn-compare"
-                                                       title="Compare"><span>Compare</span></a>
-                                                </div><!-- End .product-action-vertical -->
+                                                <form action="{{route('shop.cart.store')}}" method="POST"
+                                                      class="mt-auto">
+                                                    <div class="product-action">
 
-                                                <div class="product-action">
-                                                    <a href="#"
-                                                       class="btn-product btn-cart"><span>add to cart</span></a>
-                                                </div><!-- End .product-action -->
+                                                        @csrf
+                                                        <input type="hidden" name="product_id"
+                                                               value="{{ $product->id }}">
+                                                        <button type="submit" class="btn btn-primary w-100">
+                                                            <i class="bi bi-cart-plus"></i> Add to Cart
+                                                        </button>
+                                                    </div><!-- End .product-action -->
+                                                </form>
+
                                             </figure><!-- End .product-media -->
 
                                             <div class="product-body">
@@ -132,8 +145,8 @@
                         <div class="sidebar sidebar-shop">
                             <div class="widget widget-clean">
                                 <label>Filters:</label>
-                                <a href="#" class="sidebar-filter-clear">Clean All</a>
-                            </div><!-- End .widget widget-clean -->
+                                <a href="{{ route('shop.products') }}">Clean All</a>
+                            </div>
 
                             <div class="widget widget-collapsible">
                                 <h3 class="widget-title">
